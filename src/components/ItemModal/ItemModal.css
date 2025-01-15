@@ -1,0 +1,38 @@
+.modal__content_type_image {
+  max-width: 498px;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.modal__image {
+  max-width: 498px;
+  height: auto;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+}
+.modal__footer {
+  font-family: "CabinetGrotesk-Bold";
+  padding-top: 20px;
+  margin: 0;
+}
+
+.modal__caption {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.modal__close {
+  height: 20px;
+  width: 20px;
+  right: 24px;
+  top: 24px;
+}
+.modal__weather {
+  margin: 12px 0 0;
+}

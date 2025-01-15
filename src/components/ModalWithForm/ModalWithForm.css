@@ -1,0 +1,143 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.modal__opened {
+  visibility: visible;
+}
+
+.modal__content {
+  background-color: white;
+  position: relative;
+  padding: 28px 29px 36px;
+  max-width: 496px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.modal__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__label {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+.modal__label_type_radio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__input {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #00000080;
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-top: 8px;
+  width: 100%;
+  padding-left: 0;
+  outline: none;
+}
+
+.modal__radio {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal__radio-input {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #00000080;
+  cursor: pointer;
+}
+
+input[type="radio"] :checked {
+  background-color: #000;
+  border-color: black;
+}
+
+.modal__submit {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  background-color: #0000004d;
+  width: 124px;
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.modal__submit:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__legend {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.modal__footer {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal__caption {
+  width: 36px;
+  height: 24px;
+  margin-left: 32px;
+  margin-top: 20px;
+  margin-right: 430px;
+  margin-bottom: 32px;
+}
+
+.modal__weather {
+  width: 115px;
+  height: 24px;
+  margin-left: 32px;
+  margin-bottom: 32px;
+}
