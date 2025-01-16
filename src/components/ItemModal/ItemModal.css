@@ -1,7 +1,7 @@
-.modal__content_type_image {
+.modal__image_type-image {
   max-width: 498px;
   height: auto;
-  padding: 0;
+  padding: unset;
   margin: 0;
   overflow: hidden;
 }
@@ -14,6 +14,7 @@
   object-fit: cover;
   padding: 0;
   margin: 0;
+  border-radius: 20px 20px 0px 0px;
 }
 .modal__footer {
   font-family: "CabinetGrotesk-Bold";

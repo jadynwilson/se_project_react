@@ -1,4 +1,29 @@
-# React + Vite
+# Project 4: React + Vite
+
+The fourth project of the Software Engineering program at TripleTen. This project was created using HTML, javascrpit, and CSS based on the figma design.
+
+## Project features
+
+- HTML5
+- Figma
+- VS code
+- BEM file structure
+- GitBash
+- React
+- API
+- Filters
+- Modals
+- Current temp/date/time
+
+## Plan on improving the project
+
+I would like to add to the website to have more functionality. I would like to be able to add my own clothing into the app. Also being able to add more filters including, colors, brands, type of clothing item. Eventually I hope to be able to change the profile information and images.
+
+## Links
+
+[GitHub Pages](https://github.com/jadynwilson/se_project_react)
+
+[Website](https://jadynwilson.github.io/se_project_react//)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

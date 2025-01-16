@@ -7,6 +7,10 @@ body {
   font-family: "Cabinet Grotesk";
 }
 
+.cards {
+  background-color: white;
+}
+
 .cards__list {
   display: flex;
   flex-wrap: wrap;
