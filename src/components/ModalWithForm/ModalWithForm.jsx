@@ -40,21 +40,39 @@ function ModalWithForm({ activeModal, handleCloseClick }) {
               htmlFor="hot"
               className="modal__label modal__label_type_radio"
             >
-              <input id="hot" type="radio" className=" modal__radio-input" />{" "}
+              <input
+                id="hot"
+                name="weather"
+                value="hot"
+                type="radio"
+                className=" modal__radio-input"
+              />{" "}
               <span className="modal__radio-text">Hot </span>
             </label>
             <label
               htmlFor="warm"
               className="modal__label modal__label_type_radio"
             >
-              <input id="warm" type="radio" className=" modal__radio-input" />
+              <input
+                id="warm"
+                name="weather"
+                value="warm"
+                type="radio"
+                className=" modal__radio-input"
+              />
               <span className="modal__radio-text">Warm </span>
             </label>
             <label
               htmlFor="cold"
               className="modal__label modal__label_type_radio"
             >
-              <input id="cold" type="radio" className=" modal__radio-input" />
+              <input
+                id="cold"
+                name="weather"
+                value="cold"
+                type="radio"
+                className=" modal__radio-input"
+              />
               <span className="modal__radio-text">Cold </span>
             </label>
           </fieldset>

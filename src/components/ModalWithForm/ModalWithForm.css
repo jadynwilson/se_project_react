@@ -91,9 +91,8 @@
   cursor: pointer;
 }
 
-input[type="radio"] :checked {
-  background-color: #000;
-  border-color: black;
+input[type="radio"]:checked {
+  accent-color: black;
 }
 
 .modal__submit {
