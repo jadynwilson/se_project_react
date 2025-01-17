@@ -51,8 +51,8 @@ function App() {
         isOpen={activeModal === "add-garment"}
         handleCloseClick={closeActiveModal}
       >
-        <label htmlFor="name" className="modal__label">
-          Name
+        <label className="modal__label">
+          Name{" "}
           <input
             type="text"
             className="modal__input"
@@ -60,8 +60,8 @@ function App() {
             placeholder="Name"
           />
         </label>
-        <label htmlFor="imageUrl" className="modal__label">
-          Image
+        <label className="modal__label">
+          Image{" "}
           <input
             type="url"
             className="modal__input"
