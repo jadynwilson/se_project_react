@@ -1,6 +1,5 @@
 .footer {
   display: flex;
-  background-color: white;
   padding: 40px 778px 42px 24px;
   width: 1358px;
 }
@@ -14,7 +13,7 @@
 }
 
 .footer__year {
-  margin-left: auto;
+  margin-left: 850px;
   width: 204px;
   height: 20px;
   font-weight: 500;
