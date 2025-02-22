@@ -6,8 +6,9 @@
 
 .clothes-section__heading {
   display: flex;
-  margin-bottom: 16px;
+  flex-direction: row;
   align-items: center;
+  width: 100%;
 }
 
 .clothes-section__title {
@@ -22,6 +23,11 @@
   color: rgba(0, 0, 0, 0.6);
   max-width: 88px;
   max-height: 25px;
+}
+
+.clothes-section__button:hover {
+  cursor: pointer;
+  opacity: 80%;
 }
 
 .clothes-section__list {

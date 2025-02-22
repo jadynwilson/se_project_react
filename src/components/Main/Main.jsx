@@ -1,7 +1,7 @@
 import WeatherCard from "../Main/WeatherCard/WeatherCard";
 import ItemCard from "../Main/ItemCard/ItemCard";
 import "./Main.css";
-function Main({ weatherData, onCardClick, clothingItems }) {
+function Main({ weatherData, onCardClick, clothingItems, onDelete }) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -20,6 +20,7 @@ function Main({ weatherData, onCardClick, clothingItems }) {
                   key={item._id}
                   item={item}
                   onCardClick={onCardClick}
+                  onDelete={onDelete}
                 />
               );
             })}

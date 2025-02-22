@@ -11,6 +11,8 @@ import CurrentTempUnitContext from "../../contexts/CurrentTempUnit";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 import Profile from "../Profile/Profile";
+import { getItems, deleteItem, addItem } from "../../utils/Api.js";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,6 +24,31 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [SelectedCard, setSelectedCard] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+
+  const handleDeleteClick = (card) => {
+    console.log("handleConfirmDelete triggered");
+    console.log("SelectedCard:", SelectedCard);
+
+    setSelectedCard(card);
+    setActiveModal("confirm-delete");
+  };
+
+  const handleConfirmDelete = () => {
+    console.log("SelectedCard before deletion:", SelectedCard); // Debugging
+    if (!SelectedCard || !SelectedCard._id) {
+      console.error("Error: SelectedCard is missing _id");
+      return;
+    }
+
+    deleteItem(SelectedCard._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== SelectedCard._id)
+        );
+        closeActiveModal();
+      })
+      .catch((err) => console.error("Error deleting item:", err));
+  };
 
   const handleToggleSwitchChange = () => {
     setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
@@ -39,11 +66,16 @@ function App() {
     setActiveModal("");
   };
 
-  const handleDeleteCard 
-
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
-    closeActiveModal();
+    const newItem = { name, link: imageUrl, weather };
+    addItem(newItem)
+      .then((createdItem) => {
+        setClothingItems([createdItem, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Error adding item:", err);
+      });
   };
 
   useEffect(() => {
@@ -54,7 +86,30 @@ function App() {
       })
       .catch(console.error);
   }, []);
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const items = await getItems();
+        console.log("Data received from API:", items);
 
+        if (Array.isArray(items)) {
+          // Check if items have `_id`
+          const missingIdItems = items.filter((item) => !item._id);
+          if (missingIdItems.length > 0) {
+            console.error("Error: Some items are missing _id:", missingIdItems);
+          }
+
+          setClothingItems(items);
+        } else {
+          console.error("Received data is not an array:", items);
+        }
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+  }, []);
   return (
     <CurrentTempUnitContext.Provider
       value={{ currentTempUnit, handleToggleSwitchChange }}
@@ -70,14 +125,20 @@ function App() {
                   weatherData={weatherData}
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  onDelete={handleDeleteClick}
                 />
               }
             />
 
             <Route
               path="/profile"
-              element={<Profile />}
-              onCardClick={handleCardClick}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  onAddClick={handleAddClick}
+                  onDeleteItem={handleDeleteClick}
+                />
+              }
             />
           </Routes>
         </div>
@@ -91,6 +152,12 @@ function App() {
           activeModal={activeModal}
           card={SelectedCard}
           handleCloseClick={closeActiveModal}
+          onDeleteClick={handleDeleteClick}
+        />
+        <DeleteConfirmModal
+          isOpen={activeModal === "confirm-delete"}
+          onClose={closeActiveModal}
+          onConfirm={handleConfirmDelete}
         />
       </div>
     </CurrentTempUnitContext.Provider>
