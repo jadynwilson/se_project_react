@@ -26,20 +26,10 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   const handleDeleteClick = (card) => {
-    console.log("handleConfirmDelete triggered");
-    console.log("SelectedCard:", SelectedCard);
-
-    setSelectedCard(card);
     setActiveModal("confirm-delete");
   };
 
   const handleConfirmDelete = () => {
-    console.log("SelectedCard before deletion:", SelectedCard); // Debugging
-    if (!SelectedCard || !SelectedCard._id) {
-      console.error("Error: SelectedCard is missing _id");
-      return;
-    }
-
     deleteItem(SelectedCard._id)
       .then(() => {
         setClothingItems((prevItems) =>
@@ -90,10 +80,8 @@ function App() {
     const fetchItems = async () => {
       try {
         const items = await getItems();
-        console.log("Data received from API:", items);
 
         if (Array.isArray(items)) {
-          // Check if items have `_id`
           const missingIdItems = items.filter((item) => !item._id);
           if (missingIdItems.length > 0) {
             console.error("Error: Some items are missing _id:", missingIdItems);
@@ -137,6 +125,7 @@ function App() {
                   onCardClick={handleCardClick}
                   onAddClick={handleAddClick}
                   onDeleteItem={handleDeleteClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
