@@ -57,7 +57,7 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    const newItem = { name, link: imageUrl, weather };
+    const newItem = { name, imageUrl, weather };
     addItem(newItem)
       .then((createdItem) => {
         setClothingItems([createdItem, ...clothingItems]);
