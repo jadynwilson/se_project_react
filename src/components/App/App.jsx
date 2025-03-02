@@ -57,7 +57,7 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    const newItem = { name, imageUrl, weather };
+    const newItem = { name, link: imageUrl, weather };
     addItem(newItem)
       .then((createdItem) => {
         setClothingItems([createdItem, ...clothingItems]);
@@ -124,7 +124,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   onAddClick={handleAddClick}
-                  onDeleteItem={handleDeleteClick}
+                  onDelete={handleDeleteClick}
                   clothingItems={clothingItems}
                 />
               }
