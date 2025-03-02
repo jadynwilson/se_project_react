@@ -133,14 +133,14 @@ function App() {
         </div>
         <AddItemModal
           isOpen={activeModal === "add-garment"}
-          handleCloseClick={closeActiveModal}
+          onCloseClick={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
         />
         <Footer />
         <ItemModal
           activeModal={activeModal}
           card={SelectedCard}
-          handleCloseClick={closeActiveModal}
+          onCloseClick={closeActiveModal}
           onDeleteClick={handleDeleteClick}
         />
         <DeleteConfirmModal

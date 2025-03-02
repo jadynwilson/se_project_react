@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
 export default function AddItemModal({
-  handleCloseClick,
+  onCloseClick,
   isOpen,
   onAddItemModalSubmit,
 }) {
@@ -40,7 +40,7 @@ export default function AddItemModal({
       title="New Garment"
       buttonText="Add Garment"
       isOpen={isOpen}
-      handleCloseClick={handleCloseClick}
+      onCloseClick={onCloseClick}
       onSubmit={handleSubmit}
     >
       <label className="modal__label">
