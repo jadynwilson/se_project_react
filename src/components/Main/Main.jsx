@@ -2,6 +2,7 @@ import WeatherCard from "../Main/WeatherCard/WeatherCard";
 import ItemCard from "../Main/ItemCard/ItemCard";
 import "./Main.css";
 function Main({ weatherData, onCardClick, clothingItems, onDelete }) {
+  console.log("Weather Data in Main:", weatherData);
   return (
     <main>
       <WeatherCard weatherData={weatherData} />

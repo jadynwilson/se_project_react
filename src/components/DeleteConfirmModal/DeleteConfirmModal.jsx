@@ -11,7 +11,7 @@ function DeleteConfirmModal({ isOpen, onClose, onConfirm }) {
         <button onClick={onClose} type="button" className="modal__close">
           <img src={close} alt="Close" className="modal__close-icon" />
         </button>
-        <h2 classname="modal__confirm-text">
+        <h2 className="modal__confirm-text">
           Are you sure you want to delete this item?
         </h2>
         <p className="modal__confirm-action">This action is irreversible.</p>
