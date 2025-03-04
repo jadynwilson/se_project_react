@@ -71,11 +71,19 @@
   font-size: 20px;
 }
 
+.modal__confirm-button:hover {
+  cursor: pointer;
+}
+
 .modal__cancel-button {
   background-color: transparent;
   border: none;
   margin-top: 24px;
   font-size: 20px;
+}
+
+.modal__cancel-button:hover {
+  cursor: pointer;
 }
 
 .modal__buttons {

@@ -30,8 +30,6 @@ export const deleteItem = (id) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).catch((err) => {
-    console.error("API delete request failed:", err);
   });
 };
 

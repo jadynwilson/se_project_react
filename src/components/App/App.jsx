@@ -22,7 +22,7 @@ function App() {
   });
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
-  const [SelectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   const handleDeleteClick = (card) => {
@@ -30,10 +30,10 @@ function App() {
   };
 
   const handleConfirmDelete = () => {
-    deleteItem(SelectedCard._id)
+    deleteItem(selectedCard._id)
       .then(() => {
         setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== SelectedCard._id)
+          prevItems.filter((item) => item._id !== selectedCard._id)
         );
         closeActiveModal();
       })
@@ -67,6 +67,20 @@ function App() {
         console.error("Error adding item:", err);
       });
   };
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -139,7 +153,7 @@ function App() {
         <Footer />
         <ItemModal
           activeModal={activeModal}
-          card={SelectedCard}
+          card={selectedCard}
           onCloseClick={closeActiveModal}
           onDeleteClick={handleDeleteClick}
         />
