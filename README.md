@@ -21,11 +21,11 @@ I would like to add to the website to have more functionality. I would like to b
 
 ## Links
 
+[WTWR Backend Repository](https://github.com/jadynwilson/se_project_express)
+
 [GitHub Pages](https://github.com/jadynwilson/se_project_react)
 
 [Website](https://jadynwilson.github.io/se_project_react//)
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 

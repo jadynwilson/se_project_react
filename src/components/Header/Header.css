@@ -45,3 +45,27 @@
   text-decoration: none;
   color: black;
 }
+.header__auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.header__auth-buttons button {
+  padding: 6px 14px;
+  background: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.header__auth-buttons button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.header__auth-buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
