@@ -25,7 +25,7 @@
 }
 
 .modal__delete-button {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
   font-size: 20px;
   font-weight: normal;
   line-height: 24px;
@@ -47,14 +47,14 @@
 
 .modal__confirm-text {
   height: 48px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
 }
 
 .modal__confirm-action {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
