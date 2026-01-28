@@ -1,98 +1,62 @@
-.modal_type_confirm {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal__delete-content {
+.modal_type_confirm .modal__delete-content {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ffffff;
   width: 670px;
   height: 280px;
   padding: 20px;
   border-radius: 10px;
-  text-align: center;
-  justify-content: center;
   position: relative;
-}
-
-.modal__delete-button {
-  font-family: "CabinetGrotesk-Bold", sans-serif;
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 24px;
-  color: #ff4d00;
-  background: none;
-  border: none;
+  text-align: center;
   box-sizing: border-box;
-  cursor: pointer;
-  position: absolute;
-  right: 20px;
-  bottom: 88px;
-  text-align: right;
-  transition: color 0.2s ease;
-}
-
-.modal__delete-button:hover {
-  color: #ff2200;
 }
 
 .modal__confirm-text {
-  height: 48px;
-  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-family: "CabinetGrotesk", sans-serif;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  font-weight: 700;
+  margin: 0 0 12px;
 }
 
 .modal__confirm-action {
-  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-family: "CabinetGrotesk", sans-serif;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  font-weight: 700;
-  height: 48px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.modal__confirm-button {
-  background-color: transparent;
-  border: none;
-  color: #ff4d00;
-  margin-top: 40px;
-  font-size: 20px;
-}
-
-.modal__confirm-button:hover {
-  cursor: pointer;
-}
-
-.modal__cancel-button {
-  background-color: transparent;
-  border: none;
-  margin-top: 24px;
-  font-size: 20px;
-}
-
-.modal__cancel-button:hover {
-  cursor: pointer;
+  margin: 0;
 }
 
 .modal__buttons {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
-.modal__close-icon {
-  width: 20px;
-  height: 20px;
+
+.modal__confirm-button {
+  background: none;
+  border: none;
+  color: #ff4d00;
+  font-family: "CabinetGrotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal__confirm-button:hover {
+  color: #ff2200;
+}
+
+.modal__cancel-button {
+  background: none;
+  border: none;
+  margin-top: 24px;
+  font-family: "CabinetGrotesk", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .modal__close {
@@ -102,5 +66,10 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1;
+}
+
+.modal__close-icon {
+  width: 20px;
+  height: 20px;
 }

@@ -7,7 +7,7 @@ body {
 }
 
 .page {
-  background-color: #f3f3f3;
+  overflow-x: hidden;
 }
 
 .page__content {

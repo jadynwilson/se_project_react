@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./LoginModal.css";
 import close from "../../assets/closebutton.png";
 
-function LoginModal({ isOpen, onCloseClick, onLogin }) {
+function LoginModal({ isOpen, onCloseClick, onLogin, onOpen }) {
+  if (!isOpen) return null;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

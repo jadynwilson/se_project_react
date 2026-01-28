@@ -5,7 +5,7 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, openModal, weatherData }) {
+function Header({ handleAddClick, onOpen, weatherData }) {
   const currentUser = useContext(CurrentUserContext);
 
   const currentdate = new Date().toLocaleString("default", {
@@ -58,10 +58,10 @@ function Header({ handleAddClick, openModal, weatherData }) {
         </>
       ) : (
         <div className="header__auth-buttons">
-          <button onClick={() => openModal("login")} type="button">
+          <button onClick={() => onOpen("login")} type="button">
             Log In
           </button>
-          <button onClick={() => openModal("register")} type="button">
+          <button onClick={() => onOpen("register")} type="button">
             Register
           </button>
         </div>

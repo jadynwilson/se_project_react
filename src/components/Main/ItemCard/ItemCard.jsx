@@ -4,31 +4,24 @@ import CurrentUserContext from "../../../contexts/CurrentUserContext";
 import likeIcon from "../../../assets/heart.png";
 import likedIcon from "../../../assets/likedheart.png";
 
-function ItemCard({ item, onCardClick, onDelete, onCardLike }) {
+function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
-
-  const handleCardClick = () => {
-    onCardClick(item);
-  };
 
   const isLiked = currentUser
     ? item.likes?.some((id) => id === currentUser._id)
     : false;
 
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.stopPropagation();
     if (!currentUser) return;
     onCardLike(item);
   };
 
   return (
-    <li className="card">
+    <li className="card" onClick={() => onCardClick(item)}>
       <h2 className="card__name">{item.name}</h2>
-      <img
-        onClick={handleCardClick}
-        className="card__image"
-        src={item.imageUrl}
-        alt={item.name}
-      />
+
+      <img className="card__image" src={item.link} alt={item.name} />
 
       {currentUser && (
         <button className="card__like-button" onClick={handleLike}>
@@ -37,12 +30,6 @@ function ItemCard({ item, onCardClick, onDelete, onCardLike }) {
             alt={isLiked ? "Liked" : "Like"}
             className="card__like-icon"
           />
-        </button>
-      )}
-
-      {onDelete && (
-        <button className="card__delete-button" onClick={() => onDelete(item)}>
-          Delete
         </button>
       )}
     </li>

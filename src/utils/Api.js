@@ -11,11 +11,12 @@ function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
-export const getItems = () => {
+export const getItems = (token) => {
   return request(`${baseUrl}/items`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   }).then((data) => {
     console.log("API response:", data);

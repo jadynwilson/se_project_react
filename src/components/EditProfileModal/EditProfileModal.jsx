@@ -19,12 +19,14 @@ function EditProfileModal({ isOpen, onCloseClick, onUpdateUser, currentUser }) {
   };
 
   return (
-    <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
         <button onClick={onCloseClick} className="modal__close">
           <img src={closeIcon} alt="close" />
         </button>
+
         <h2 className="modal__title">Edit Profile</h2>
+
         <form className="modal__form" onSubmit={handleSubmit}>
           <input
             type="text"

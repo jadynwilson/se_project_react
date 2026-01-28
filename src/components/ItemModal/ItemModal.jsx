@@ -1,223 +1,35 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constants";
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
-import ItemModal from "../ItemModal/ItemModal";
-import AddItemModal from "../AddItemModal/AddItemModal";
-import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
-import Profile from "../Profile/Profile";
-import * as auth from "../../utils/auth";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import LoginModal from "../LoginModal/LoginModal";
-import CurrentTempUnitContext from "../../contexts/CurrentTempUnit";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { getItems, addItem, deleteItem } from "../../utils/Api";
+import "./ItemModal.css";
+import { createPortal } from "react-dom";
 
-function App() {
-  const [weatherData, setWeatherData] = useState({
-    type: "",
-    temp: { F: 999 },
-    city: "",
-  });
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
-  const [activeModal, setActiveModal] = useState("");
-  const [selectedCard, setSelectedCard] = useState({});
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+function ItemModal({ isOpen, card, onCloseClick, onDeleteClick }) {
+  return createPortal(
+    <div className={`modal${isOpen ? " modal_opened" : ""}`}>
+      <div className="modal__content">
+        <button className="modal__close" type="button" onClick={onCloseClick}>
+          ✕
+        </button>
 
-  // Modal handlers
-  const closeActiveModal = () => setActiveModal("");
-  const handleCardClick = (card) => {
-    setActiveModal("preview");
-    setSelectedCard(card);
-  };
-  const handleAddClick = () => setActiveModal("add-garment");
-  const handleToggleSwitchChange = () => {
-    setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
-  };
+        {card && (
+          <>
+            <img className="modal__image" src={card.link} alt={card.name} />
 
-  // Item CRUD
-  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    const newItem = { name, imageUrl, weather };
-    addItem(newItem, localStorage.getItem("jwt"))
-      .then((createdItem) => {
-        setClothingItems([createdItem, ...clothingItems]);
-        closeActiveModal();
-      })
-      .catch((err) => console.error("Error adding item:", err));
-  };
+            <div className="modal__footer">
+              <h2 className="modal__title">{card.name}</h2>
+              <p className="modal__weather">Weather: {card.weather}</p>
 
-  const handleDeleteClick = (card) => {
-    setSelectedCard(card);
-    setActiveModal("confirm-delete");
-  };
-
-  const handleConfirmDelete = () => {
-    deleteItem(selectedCard._id, localStorage.getItem("jwt"))
-      .then(() => {
-        setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== selectedCard._id)
-        );
-        closeActiveModal();
-      })
-      .catch((err) => console.error("Error deleting item:", err));
-  };
-
-  // Auth handlers
-  const handleRegister = ({ name, avatar, email, password }) => {
-    auth
-      .register({ name, avatar, email, password })
-      .then(() => auth.authorize({ email, password }))
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        setIsLoggedIn(true);
-        checkToken();
-        closeActiveModal();
-      })
-      .catch((err) => console.error("Error registering user:", err));
-  };
-
-  const handleLogin = ({ email, password }) => {
-    auth
-      .authorize({ email, password })
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        setIsLoggedIn(true);
-        checkToken();
-        closeActiveModal();
-      })
-      .catch((err) => console.error("Error logging in:", err));
-  };
-
-  // Token check
-  const checkToken = () => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      auth
-        .getUserData(token)
-        .then((userData) => {
-          setCurrentUser(userData);
-          setIsLoggedIn(true);
-        })
-        .catch((err) => {
-          console.error("Invalid token:", err);
-          setIsLoggedIn(false);
-        });
-    }
-  };
-
-  // Initial data fetch
-  useEffect(() => {
-    checkToken();
-
-    getWeather(coordinates, APIkey)
-      .then((data) => setWeatherData(filterWeatherData(data)))
-      .catch(console.error);
-
-    const fetchItems = async () => {
-      try {
-        const items = await getItems();
-        if (Array.isArray(items)) {
-          setClothingItems(items);
-        } else {
-          console.error("Items data is not an array:", items);
-        }
-      } catch (err) {
-        console.error("Error fetching items:", err);
-      }
-    };
-    fetchItems();
-  }, []);
-
-  // Close modal on ESC
-  useEffect(() => {
-    if (!activeModal) return;
-    const handleEsc = (e) => {
-      if (e.key === "Escape") closeActiveModal();
-    };
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [activeModal]);
-
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <CurrentTempUnitContext.Provider
-        value={{ currentTempUnit, handleToggleSwitchChange }}
-      >
-        <div className="page">
-          <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    weatherData={weatherData}
-                    clothingItems={clothingItems}
-                    onCardClick={handleCardClick}
-                    onDelete={handleDeleteClick}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  isLoggedIn ? (
-                    <Profile
-                      clothingItems={clothingItems}
-                      onCardClick={handleCardClick}
-                      onAddClick={handleAddClick}
-                      onDelete={handleDeleteClick}
-                    />
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
-              />
-            </Routes>
-          </div>
-
-          {/* Modals */}
-          <AddItemModal
-            isOpen={activeModal === "add-garment"}
-            onCloseClick={closeActiveModal}
-            onAddItemModalSubmit={handleAddItemModalSubmit}
-          />
-          <RegisterModal
-            isOpen={activeModal === "register"}
-            onCloseClick={closeActiveModal}
-            onRegister={handleRegister}
-          />
-          <LoginModal
-            isOpen={activeModal === "login"}
-            onCloseClick={closeActiveModal}
-            onLogin={handleLogin}
-          />
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            onCloseClick={closeActiveModal}
-            onDeleteClick={handleDeleteClick}
-          />
-          <DeleteConfirmModal
-            isOpen={activeModal === "confirm-delete"}
-            onClose={closeActiveModal}
-            onConfirm={handleConfirmDelete}
-          />
-          <Footer />
-        </div>
-      </CurrentTempUnitContext.Provider>
-    </CurrentUserContext.Provider>
+              <button
+                className="modal__delete-button"
+                onClick={() => onDeleteClick(card)}
+              >
+                Delete Item
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>,
+    document.body,
   );
 }
 
-export default App;
+export default ItemModal;
