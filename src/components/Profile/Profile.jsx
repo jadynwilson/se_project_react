@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
 import "./Profile.css";
-import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Profile({
   onCardClick,
-  onAddClick,
+  onCardLike,
   onDelete,
   clothingItems,
-  openEditProfile,
-  onSignOut,
+  onEditProfile,
+  onLogout,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -21,7 +20,6 @@ function Profile({
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
         <div className="profile__user-info">
           {currentUser?.avatar ? (
             <img
@@ -36,26 +34,25 @@ function Profile({
           )}
           <h2 className="profile__name">{currentUser?.name}</h2>
           <button
-            onClick={openEditProfile}
+            onClick={onEditProfile}
             className="profile__edit-btn"
             type="button"
           >
             Edit Profile
           </button>
-
           <button
-            onClick={onSignOut}
+            onClick={onLogout}
             className="profile__signout-btn"
             type="button"
           >
-            Sign Out
+            Log Out
           </button>
         </div>
       </section>
       <section className="profile__clothing-items">
         <ClothesSection
           onCardClick={onCardClick}
-          onAddClick={onAddClick}
+          onCardLike={onCardLike}
           onDelete={onDelete}
           clothingItems={clothingItems}
         />

@@ -26,9 +26,7 @@ function Header({ handleAddClick, onOpen, weatherData }) {
       <p className="header__date-location">
         {currentdate}, {weatherData.city}
       </p>
-
-      <ToggleSwitch />
-
+      <div className="header__spacer" />
       {currentUser ? (
         <>
           <button
@@ -58,11 +56,13 @@ function Header({ handleAddClick, onOpen, weatherData }) {
         </>
       ) : (
         <div className="header__auth-buttons">
+          <ToggleSwitch />
+
+          <button onClick={() => onOpen("register")} type="button">
+            Sign Up
+          </button>
           <button onClick={() => onOpen("login")} type="button">
             Log In
-          </button>
-          <button onClick={() => onOpen("register")} type="button">
-            Register
           </button>
         </div>
       )}

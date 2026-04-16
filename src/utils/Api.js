@@ -12,12 +12,12 @@ function request(url, options) {
 }
 
 export const getItems = (token) => {
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   return request(`${baseUrl}/items`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+    headers,
   }).then((data) => {
     console.log("API response:", data);
     return data;
@@ -45,6 +45,18 @@ export const addItem = (item, token) => {
     body: JSON.stringify(item),
   });
 };
+
+export const updateCurrentUser = ({ name, avatar }, token) => {
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  });
+};
+
 export const addCardLike = (cardId, token) => {
   return fetch(`${baseUrl}/items/${cardId}/likes`, {
     method: "PUT",

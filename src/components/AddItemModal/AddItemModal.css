@@ -1,0 +1,10 @@
+.modal__radio-input {
+  -webkit-appearance: auto;
+  appearance: auto;
+  border: none;
+  border-bottom: none;
+  width: auto;
+  padding: 0;
+  margin-right: 8px;
+  cursor: pointer;
+}

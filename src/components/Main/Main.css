@@ -11,6 +11,7 @@ body {
   gap: 21px;
 }
 .cards__text {
+  margin: 40px 0 34px;
   font-weight: 700;
   font-size: 20px;
 }

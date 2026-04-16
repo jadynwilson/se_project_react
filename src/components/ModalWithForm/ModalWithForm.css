@@ -30,6 +30,12 @@
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
+  font-family: "CabinetGrotesk", sans-serif;
+}
+
+.modal__content_type_image {
+  padding: 0;
+  overflow: hidden;
 }
 
 .modal__title {
@@ -87,6 +93,7 @@
   border: none;
   margin: 0;
   padding: 0;
+  accent-color: black;
 }
 
 .modal__radio-input {
@@ -98,8 +105,8 @@
   cursor: pointer;
 }
 
-input[type="radio"]:checked {
-  accent-color: black;
+input[type="radio"]:checked + .modal__radio-text {
+  color: black;
 }
 
 .modal__submit {
@@ -128,8 +135,12 @@ input[type="radio"]:checked {
 }
 
 .modal__footer {
-  justify-content: space-between;
-  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 8px;
   font-family: "CabinetGrotesk", sans-serif;
   font-weight: 700;
 }
@@ -144,8 +155,6 @@ input[type="radio"]:checked {
 }
 
 .modal__weather {
-  width: 115px;
-  height: 24px;
-  margin-left: 32px;
-  margin-bottom: 32px;
+  margin: 0;
+  padding: 0;
 }

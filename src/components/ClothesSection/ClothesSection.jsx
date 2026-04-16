@@ -1,5 +1,5 @@
 import "./ClothesSection.css";
-import ItemCard from "../Main/ItemCard/ItemCard";
+import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -8,7 +8,7 @@ function ClothesSection({ onCardClick, onAddClick, clothingItems, onDelete }) {
 
   // Only show items owned by the current user
   const userItems = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
+    (item) => item.owner === currentUser?._id,
   );
 
   return (
