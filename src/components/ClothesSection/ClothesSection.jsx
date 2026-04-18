@@ -3,10 +3,15 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ onCardClick, onAddClick, clothingItems, onDelete }) {
+function ClothesSection({
+  onCardClick,
+  onAddClick,
+  onCardLike,
+  clothingItems,
+  onDelete,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
-  // Only show items owned by the current user
   const userItems = clothingItems.filter(
     (item) => item.owner === currentUser?._id,
   );
@@ -30,12 +35,13 @@ function ClothesSection({ onCardClick, onAddClick, clothingItems, onDelete }) {
               key={item._id}
               item={item}
               onCardClick={onCardClick}
+              onCardLike={onCardLike}
               onDelete={onDelete}
             />
           ))
         ) : (
           <p className="clothes-section__empty">
-            You haven’t added any items yet.
+            You haven't added any items yet.
           </p>
         )}
       </ul>
